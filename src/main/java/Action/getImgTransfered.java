@@ -12,7 +12,7 @@ public class getImgTransfered extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String picUrl = request.getParameter("picUrl");
-        String img = PhotoTools.openPhoto(picUrl);
+        String img = PhotoTools.GetImageStr(picUrl);
 
         response.getWriter().write(img);
     }

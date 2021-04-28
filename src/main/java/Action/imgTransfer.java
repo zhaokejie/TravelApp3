@@ -25,7 +25,7 @@ public class imgTransfer extends HttpServlet {
         String dateNow = df.format(saveTime);
         String picFileName = uname+dateNow;
         String picUrl = "/usr/local/TravelApp/data/"+picFileName;
-        PhotoTools.savaPhoto(photoData,picUrl);
+        PhotoTools.GenerateImage(photoData,picUrl);
 
         ControlPython controlPython = new ControlPython();
         controlPython.getPythonDemo("xxx","xxx"+picFileName);
