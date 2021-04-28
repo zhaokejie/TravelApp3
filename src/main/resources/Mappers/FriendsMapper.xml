@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="FriendsDao">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+    <!--<select id="queryUserById" resultType="com.zpc.mybatis.pojo.User">-->
+    <!--select * from tb_user where id = #{id}-->
+    <!--</select>-->
+
+    <!--使用别名-->
+    <select id="getFriendsListById" resultType="Service.user.Friends">
+      select
+       myID as myID,
+       friendID as friendID,
+       connectTime as connectTime
+       from
+       tbFriends
+       where myID = #{id};
+   </select>
+
+
+    <select id="getFriendsAll" resultType="Service.user.Friends">
+        select * from tbFriends;
+    </select>
+
+    <!--插入数据-->
+    <insert id="insertFriends" parameterType="Service.user.Friends">
+        INSERT INTO tbFriends (
+        myID,
+        friendID,
+        connectTime
+        )
+        VALUES
+        (
+        #{myID},
+        #{friendID},
+        #{connectTime}
+        );
+    </insert>
+
+<!--    <update id="updateFriends" parameterType="Service.user.Friends">-->
+<!--        UPDATE tbFriends-->
+<!--        <trim prefix="set" suffixOverrides=",">-->
+<!--            <if test="userName!=null">username = #{userName},</if>-->
+<!--            <if test="passWord!=null">password = #{passWord},</if>-->
+<!--            <if test="Email!=null">Email = #{Email}</if>-->
+<!--        </trim>-->
+<!--        WHERE-->
+<!--        (ID = #{ID});-->
+<!--    </update>-->
+
+    <delete id="deleteFriends" >
+        delete from tbFriends where myID=#{myID} and firendID=#{friendID};
+    </delete>
+</mapper>

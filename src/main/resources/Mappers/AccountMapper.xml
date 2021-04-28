@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="AccountDao">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+    <!--<select id="queryUserById" resultType="com.zpc.mybatis.pojo.User">-->
+    <!--select * from tb_user where id = #{id}-->
+    <!--</select>-->
+
+    <!--使用别名-->
+    <select id="getAccountById" resultType="Service.user.Account">
+      select
+       ID as ID,
+       username as userName,
+       password as passWord,
+       Email as Email
+       from
+       tbAccount
+       where ID = #{ID};
+   </select>
+
+    <select id="getAccountByName" resultType="Service.user.Account">
+      select
+       ID as ID,
+       username as userName,
+       password as passWord,
+       Email as Email
+       from
+       tbAccount
+       where username = #{arg0};
+   </select>
+
+    <select id="getAccountByEmail" resultType="Service.user.Account">
+      select
+       ID as ID,
+       username as userName,
+       password as passWord,
+       Email as Email
+       from
+       tbAccount
+       where Email = #{arg0};
+   </select>
+
+
+    <select id="getAccountAll" resultType="Service.user.Account">
+        select * from tbAccount;
+    </select>
+
+    <!--插入数据-->
+    <insert id="insertAccount" parameterType="Service.user.Account">
+        INSERT INTO tbAccount (
+        ID,
+        username,
+        password,
+        Email
+        )
+        VALUES
+        (
+        #{ID},
+        #{userName},
+        #{passWord},
+        #{Email}
+        );
+    </insert>
+
+    <update id="updateAccount" parameterType="Service.user.Account">
+        UPDATE tbAccount
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName!=null">username = #{userName},</if>
+            <if test="passWord!=null">password = #{passWord},</if>
+            <if test="Email!=null">Email = #{Email}</if>
+        </trim>
+        WHERE
+        (ID = #{ID});
+    </update>
+
+    <delete id="deleteAccount" >
+        delete from tbAccount where ID=#{ID}
+    </delete>
+</mapper>

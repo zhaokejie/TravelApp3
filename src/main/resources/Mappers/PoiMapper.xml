@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="PoiDao">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+    <!--<select id="queryUserById" resultType="com.zpc.mybatis.pojo.User">-->
+    <!--select * from tb_user where id = #{id}-->
+    <!--</select>-->
+
+    <!--使用别名-->
+    <select id="getPOIById" resultType="Service.location.MarkPoi">
+      select
+       ID as userID,
+       time as time,
+       longitude as longitude,
+       latitude as latitude,
+       poiName as poiName,
+       poiType as poiType,
+       weatherCode as weatherCode
+       from
+       tbMarkPoi
+       where ID = #{ID};
+   </select>
+
+    <select id="getPOIByPoiName" resultType="Service.location.MarkPoi">
+      select
+       ID as userID,
+       time as time,
+       longitude as longitude,
+       latitude as latitude,
+       poiName as poiName,
+       poiType as poiType,
+       weatherCode as weatherCode
+       from
+       tbMarkPoi
+       where poiName = #{arg0};
+   </select>
+
+
+    <select id="getPOIAll" resultType="Service.location.MarkPoi">
+        select * from tbMarkPoi;
+    </select>
+
+    <!--插入数据-->
+    <insert id="insertPOI" parameterType="Service.location.MarkPoi">
+        INSERT INTO tbMarkPoi (
+       ID,
+       time,
+       longitude,
+       latitude,
+       poiName,
+       poiType,
+       weatherCode
+        )
+        VALUES
+        (
+        #{userID},
+        #{time},
+        #{longitude},
+        #{latitude},
+        #{poiName},
+        #{poiType},
+        #{weatherCode}
+        );
+    </insert>
+
+    <update id="updatePOI" parameterType="Service.location.MarkPoi">
+        UPDATE tbMarkPoi
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName!=null">userName = #{userName},</if>
+            <if test="headPicSrc!=null">headPicSrc = #{headPicSrc},</if>
+            <if test="Email!=null">Email = #{Email}</if>
+        </trim>
+        WHERE
+        (ID = #{ID});
+    </update>
+
+    <delete id="deletePOI" >
+        delete from tbMarkPoi where ID=#{ID}
+    </delete>
+</mapper>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="MessageDao">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+    <!--<select id="queryUserById" resultType="com.zpc.mybatis.pojo.User">-->
+    <!--select * from tb_user where id = #{id}-->
+    <!--</select>-->
+
+    <!--使用别名-->
+    <select id="getMessageListById" resultType="Service.user.Message">
+      select
+       senderID as senderID,
+       receiverID as receiverID,
+       type as type,
+       content as content,
+       sendTime as sendTime
+       from
+       tbMessage
+       where receiverID = #{id};
+   </select>
+
+    <select id="getSendedMessageListById" resultType="Service.user.Message">
+      select
+       senderID as senderID,
+       receiverID as receiverID,
+       type as type,
+       content as content,
+       sendTime as sendTime
+       from
+       tbSendedMessage
+       where senderID = #{id} OR receiverID = #{id};
+   </select>
+
+
+
+
+    <!--插入数据-->
+    <insert id="insertMessage" parameterType="Service.user.Message">
+        INSERT INTO tbMessage (
+        senderID,
+        receiverID,
+        type,
+        content,
+        sendTime
+        )
+        VALUES
+        (
+        #{senderID},
+        #{receiverID},
+        #{type},
+        #{content},
+        #{sendTime}
+        );
+    </insert>
+
+    <!--插入数据-->
+    <insert id="insertSendedMessage" parameterType="Service.user.Message">
+        INSERT INTO tbSendedMessage (
+        senderID,
+        receiverID,
+        type,
+        content,
+        sendTime
+        )
+        VALUES
+        (
+        #{senderID},
+        #{receiverID},
+        #{type},
+        #{content},
+        #{sendTime}
+        );
+    </insert>
+
+    <!--    <update id="updateFriends" parameterType="Service.user.Friends">-->
+    <!--        UPDATE tbFriends-->
+    <!--        <trim prefix="set" suffixOverrides=",">-->
+    <!--            <if test="userName!=null">username = #{userName},</if>-->
+    <!--            <if test="passWord!=null">password = #{passWord},</if>-->
+    <!--            <if test="Email!=null">Email = #{Email}</if>-->
+    <!--        </trim>-->
+    <!--        WHERE-->
+    <!--        (ID = #{ID});-->
+    <!--    </update>-->
+
+    <delete id="deleteMessagebySendID" >
+        delete from tbMessage where receiverID=#{receiverID};
+    </delete>
+
+    <delete id="deleteSendedMessagebySendID" >
+        delete from tbSendedMessage where receiverID=#{receiverID};
+    </delete>
+</mapper>
