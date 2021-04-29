@@ -16,11 +16,11 @@ public class getImgTransfered extends HttpServlet {
 
         response.getWriter().write(img);
 
-        try {
-            Thread.currentThread().join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.currentThread().join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
