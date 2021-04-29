@@ -24,7 +24,7 @@ public class imgTransfer extends HttpServlet {
         Date saveTime = new Date();
         String dateNow = df.format(saveTime);
         String picFileName = uname+dateNow;
-        String picUrl = "/usr/local/TravelApp/data/"+picFileName+".jpg";
+        String picUrl = "C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg";
         PhotoTools.GenerateImage(photoData,picUrl);
 
         ControlPython controlPython = new ControlPython();
