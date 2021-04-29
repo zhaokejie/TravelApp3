@@ -36,12 +36,12 @@ public class MapRecordDaoImpl implements MapRecordDao {
     }
 
     @Override
-    public void updatePoi(MarkPoi mapR) {
+    public void updateMapRecord(MarkPoi mapR) {
 
     }
 
     @Override
-    public void deletePoi(Map prams) {
+    public void deleteMapRecord(Map prams) {
 
     }
 }

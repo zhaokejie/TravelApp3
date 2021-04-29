@@ -36,12 +36,12 @@
 
 
     <select id="getMapRecordAll" resultType="Service.location.MapRecord">
-        select * from tbFriends;
+        select * from mapRecord;
     </select>
 
     <!--插入数据-->
     <insert id="insertMapRecord" parameterType="Service.location.MapRecord">
-        INSERT INTO tbFriends (
+        INSERT INTO mapRecord (
             id,
             saveTime,
             userName,
@@ -67,7 +67,7 @@
     <!--        (ID = #{ID});-->
     <!--    </update>-->
 
-    <delete id="deleteFriends" >
+    <delete id="deleteMapRecord" >
         delete from mapRecord where id=#{id} and saveTime=#{saveTime};
     </delete>
 </mapper>

@@ -38,8 +38,8 @@ public interface MapRecordDao {
      *
      * @param mapR
      */
-    public void updatePoi(MarkPoi mapR);
+    public void updateMapRecord(MarkPoi mapR);
 
 
-    public void deletePoi(Map prams);
+    public void deleteMapRecord(Map prams);
 }
