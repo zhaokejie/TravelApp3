@@ -15,6 +15,12 @@ public class getImgTransfered extends HttpServlet {
         String img = PhotoTools.GetImageStr(picUrl);
 
         response.getWriter().write(img);
+
+        try {
+            Thread.currentThread().join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

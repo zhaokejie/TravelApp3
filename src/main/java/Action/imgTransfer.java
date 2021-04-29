@@ -37,8 +37,12 @@ public class imgTransfer extends HttpServlet {
 
 
         response.getWriter().write("picUrl:"+picUrl);
-        
 
+        try {
+            Thread.currentThread().join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
