@@ -26,7 +26,7 @@ public class MapRecordDaoImpl implements MapRecordDao {
     }
 
     @Override
-    public List<MarkPoi> getMapRecordAll() {
+    public List<MapRecord> getMapRecordAll() {
         return this.sqlSession.selectList("MapRecordDao.getMapRecordAll");
     }
 
@@ -36,7 +36,7 @@ public class MapRecordDaoImpl implements MapRecordDao {
     }
 
     @Override
-    public void updateMapRecord(MarkPoi mapR) {
+    public void updateMapRecord(MapRecord mapR) {
 
     }
 

@@ -24,7 +24,7 @@ public interface MapRecordDao {
      *
      * @return
      */
-    public List<MarkPoi> getMapRecordAll();
+    public List<MapRecord> getMapRecordAll();
 
     /**
      * 新增用户
@@ -33,12 +33,8 @@ public interface MapRecordDao {
      */
     public void insertMapRecord(MapRecord mapR);
 
-    /**
-     * 更新用户信息
-     *
-     * @param mapR
-     */
-    public void updateMapRecord(MarkPoi mapR);
+
+    public void updateMapRecord(MapRecord mapR);
 
 
     public void deleteMapRecord(Map prams);
