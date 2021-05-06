@@ -4,6 +4,7 @@ import Service.location.MapRecord;
 import Service.tools.ControlPython;
 import Service.tools.PhotoTools;
 import Service.user.User;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +33,10 @@ public class imgTransfer extends HttpServlet {
 
         }while(c != -1) ;
         String photoData = new String(buf);
+
+        JSONObject jsonObject = new JSONObject(photoData);
+        photoData = jsonObject.getString("rawMap");
+
         User aUser = User.getUserByID(User.getIDByName(uname));
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         Date saveTime = new Date();
