@@ -120,20 +120,16 @@ public class PhotoTools {
         byte[] imageByte;
         try {
             imageByte = Base64.getDecoder().decode(imageString);
-            ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
-            image = ImageIO.read(bis);
-            bis.close();
+//            ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+            String imgFilePath = path;//新生成的图片
+            OutputStream out = new FileOutputStream(imgFilePath);
+            out.write(imageByte);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        File outputfile = new File(path);
 
-        try {
-            ImageIO.write(image, "jpg", outputfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return image;
     }
 
