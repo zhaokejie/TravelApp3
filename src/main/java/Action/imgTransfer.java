@@ -24,12 +24,11 @@ public class imgTransfer extends HttpServlet {
         int c;
 
         StringBuffer buf = new StringBuffer();
-        {
+        do {
             c = request.getReader().read();
             buf.append(c);
 
-        }
-        while(c != -1) ;
+        }while(c != -1) ;
         String photoData = new String(buf);
         User aUser = User.getUserByID(User.getIDByName(uname));
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
