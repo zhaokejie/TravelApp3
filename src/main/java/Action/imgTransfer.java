@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Reader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,7 +19,18 @@ import java.util.Date;
 public class imgTransfer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uname = request.getParameter("uname");
-        String photoData = request.getParameter("photoData");
+//        String photoData = request.getParameter("photoData");
+        Reader reader = request.getReader();
+        int c;
+
+        StringBuffer buf = new StringBuffer();
+        {
+            c = request.getReader().read();
+            buf.append(c);
+
+        }
+        while(c != -1) ;
+        String photoData = new String(buf);
         User aUser = User.getUserByID(User.getIDByName(uname));
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         Date saveTime = new Date();
