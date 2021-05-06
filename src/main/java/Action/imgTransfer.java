@@ -41,7 +41,7 @@ public class imgTransfer extends HttpServlet {
         PhotoTools.GenerateImage(photoData,picUrl);
 
         ControlPython controlPython = new ControlPython();
-        controlPython.getPythonDemo("xxx","xxx"+picFileName);
+        controlPython.getPythonDemo("C:\\yhj\\code\\PycharmProject\\mapTransfer\\demo.py","C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg");
         MapRecord mapRecord = new MapRecord();
         mapRecord.setUserName(uname);
         mapRecord.setSaveTime(saveTime);
