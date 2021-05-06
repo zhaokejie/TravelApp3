@@ -3,7 +3,10 @@ package Service.tools;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Base64;
 
 public class PhotoTools {
     public static void savaPhoto(String data, String path) throws IOException {
@@ -100,6 +103,63 @@ public class PhotoTools {
             return false;
         }
     }
+
+
+
+
+    //新版本的Base64
+    /**
+     * 解密
+     *
+     * @param imageString
+     * @return
+     */
+    public static BufferedImage decodeToImage(String imageString,String path) {
+
+        BufferedImage image = null;
+        byte[] imageByte;
+        try {
+            imageByte = Base64.getDecoder().decode(imageString);
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+            image = ImageIO.read(bis);
+            bis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        File outputfile = new File(path);
+
+        try {
+            ImageIO.write(image, "jpg", outputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+    /**
+     * 加密
+     *
+     * @param image
+     * @param type
+     * @return
+     */
+    public static String encodeToString(BufferedImage image, String type) {
+        String imageString = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+        try {
+            ImageIO.write(image, type, bos);
+            byte[] imageBytes = bos.toByteArray();
+            imageString = Base64.getEncoder().encodeToString(imageBytes);
+
+            bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageString;
+    }
+
 
 
 }

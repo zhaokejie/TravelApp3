@@ -43,7 +43,7 @@ public class imgTransfer extends HttpServlet {
         String dateNow = df.format(saveTime);
         String picFileName = uname+dateNow;
         String picUrl = "C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg";
-        PhotoTools.GenerateImage(photoData,picUrl);
+        PhotoTools.decodeToImage(photoData,picUrl);
 
         ControlPython controlPython = new ControlPython();
         controlPython.getPythonDemo("C:\\yhj\\code\\PycharmProject\\mapTransfer\\demo.py","C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg");
