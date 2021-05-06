@@ -16,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @WebServlet(name = "imgTransfer",urlPatterns = "/imgTransfer")
+
+
 public class imgTransfer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uname = request.getParameter("uname");
