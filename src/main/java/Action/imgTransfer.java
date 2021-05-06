@@ -28,7 +28,7 @@ public class imgTransfer extends HttpServlet {
         StringBuffer buf = new StringBuffer();
         do {
             c = request.getReader().read();
-            buf.append(c);
+            buf.append((char)c);
 
         }while(c != -1) ;
         String photoData = new String(buf);
