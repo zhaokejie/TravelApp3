@@ -140,7 +140,8 @@ public class PhotoTools {
      * @param type
      * @return
      */
-    public static String encodeToString(BufferedImage image, String type) {
+    public static String encodeToString( String imgPath, String type) throws IOException {
+        BufferedImage image = ImageIO.read(new FileInputStream(imgPath));
         String imageString = null;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
