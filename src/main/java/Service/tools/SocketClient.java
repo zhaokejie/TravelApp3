@@ -59,7 +59,7 @@ public class SocketClient {
             //获取输出流，向服务器端发送信息
             OutputStream os=socket.getOutputStream();//字节输出流
             PrintWriter pw=new PrintWriter(os);//将输出流包装为打印流
-            pw.write("mess");
+            pw.write(mess);
             pw.flush();
             socket.shutdownOutput();//关闭输出流
 
