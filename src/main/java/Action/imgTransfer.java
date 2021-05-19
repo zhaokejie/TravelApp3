@@ -3,6 +3,7 @@ package Action;
 import Service.location.MapRecord;
 import Service.tools.ControlPython;
 import Service.tools.PhotoTools;
+import Service.tools.SocketClient;
 import Service.user.User;
 import org.json.JSONObject;
 
@@ -45,13 +46,20 @@ public class imgTransfer extends HttpServlet {
         String picUrl = "C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg";
         PhotoTools.decodeToImage(photoData,picUrl);
 
-        ControlPython controlPython = new ControlPython();
-        controlPython.getPythonDemo("C:\\yhj\\code\\PycharmProject\\mapTransfer\\demo.py","C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg");
-        MapRecord mapRecord = new MapRecord();
-        mapRecord.setUserName(uname);
-        mapRecord.setSaveTime(saveTime);
-        mapRecord.setPath(picUrl);
-        MapRecord.saveMapRecord(mapRecord);
+        //新的python调用方法
+        JSONObject jsonPy = new JSONObject();
+        jsonPy.put("picFileName" , picFileName);
+        SocketClient.sendMessage(jsonPy.toString());
+
+        //旧版调用Python程序方法
+//        ControlPython controlPython = new ControlPython();
+//        controlPython.getPythonDemo("C:\\yhj\\code\\PycharmProject\\mapTransfer\\demo.py","C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg");
+//        MapRecord mapRecord = new MapRecord();
+//        mapRecord.setUserName(uname);
+//        mapRecord.setSaveTime(saveTime);
+//        mapRecord.setPath(picUrl);
+//        MapRecord.saveMapRecord(mapRecord);
+
 
 
         response.getWriter().write("picUrl:"+picUrl);
