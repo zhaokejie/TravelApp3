@@ -23,6 +23,8 @@ import java.util.Date;
 public class imgTransfer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uname = request.getParameter("uname");
+        String styleIndex = request.getParameter("styleIndex");
+
 //        String photoData = request.getParameter("photoData");
         Reader reader = request.getReader();
         int c;
@@ -44,12 +46,16 @@ public class imgTransfer extends HttpServlet {
         String dateNow = df.format(saveTime);
         String picFileName = uname+dateNow;
         String picUrl = "C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg";
+        String resPicUrl = "C:\\yhj\\data\\mapTransfer\\stylizedMap\\"+picFileName+".jpg";
         PhotoTools.decodeToImage(photoData,picUrl);
 
         //新的python调用方法
         JSONObject jsonPy = new JSONObject();
         jsonPy.put("picFileName" , picFileName);
+        jsonPy.put("styleIndex", styleIndex);
         SocketClient.sendMessage(jsonPy.toString());
+        System.out.println("-------------------jsonPy.toString()---------------------");
+        System.out.println(jsonPy.toString());
 
         //旧版调用Python程序方法
 //        ControlPython controlPython = new ControlPython();
@@ -61,8 +67,9 @@ public class imgTransfer extends HttpServlet {
 //        MapRecord.saveMapRecord(mapRecord);
 
 
-
-        response.getWriter().write("picUrl:"+picUrl);
+        JSONObject jsonPicUrl = new JSONObject();
+        jsonPicUrl.put("picUrl", resPicUrl);
+        response.getWriter().write(jsonPicUrl.toString());
 
 //        try {
 //            Thread.currentThread().join();

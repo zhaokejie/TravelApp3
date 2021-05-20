@@ -37,20 +37,21 @@ public class ControlPython{
      * @param pyPath python脚本路径
      * @param args1 参数1
      */
-    public String getPythonDemo(String pyPath, String args1){
+    public String getPythonDemo(String pyPath, String[] args1){
         Process proc;
         String line = null;
         List<String> lines = new ArrayList<String>();
         try {
-            String[] args = new String[] {"python",pyPath,args1};
-            System.out.println("args:"+args1);
+            String[] args = new String[] {"python",pyPath, args1[0], args1[1], args1[2], args1[3]};
+//            String[] args = new String[] {"python", pyPath };
+            System.out.println("args:"+args1[0]+args1[1]+args1[2]+args1[3]);
             proc = Runtime.getRuntime().exec(args);  //该方法参数必须是String类型的
 
             //用输入输出流来截取结果
             BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(), "gbk"));   //gbk 避免汉字乱码
             while ((line = in.readLine()) != null) {
-                System.out.println(":"+line);
-                lines.add(line);   //把Python的print值保存了下来
+//                System.out.println(":"+line);
+//                lines.add(line);   //把Python的print值保存了下来
             }
 
             in.close();
@@ -69,7 +70,13 @@ public class ControlPython{
 
 
     public static void main(String[] args) {
-        new ControlPython().getPythonDemo("D:\\Work\\py_project\\ItemCF\\Recommend.py","2");
+        String picFileName = "sunyhj20210506224154";
+        String[] args1 = new String[] { "--content_image_path=C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg",
+                "--content_seg_path=C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg",
+                "--style_image_path=C:\\yhj\\code\\PycharmProject\\mapTransfer\\style.jpg",
+                "--rawMapName="+picFileName+".jpg"};
+        ControlPython c = new ControlPython();
+        c.getPythonDemo("C:\\yhj\\code\\PycharmProject\\mapTransfer\\demo.py", args1);
 
     }
 

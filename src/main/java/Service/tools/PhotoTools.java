@@ -116,19 +116,26 @@ public class PhotoTools {
      */
     public static BufferedImage decodeToImage(String imageString,String path) {
 
+        String file = imageString;
+        if (file.contains("data:")) {
+            int start = file.indexOf(",");
+            file = file.substring(start + 1);
+        }
+        System.out.println(file.substring(0,1000));
+
         BufferedImage image = null;
         byte[] imageByte;
         try {
-            imageByte = Base64.getDecoder().decode(imageString);
+            imageByte = Base64.getDecoder().decode(file);
 //            ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
             String imgFilePath = path;//新生成的图片
             OutputStream out = new FileOutputStream(imgFilePath);
             out.write(imageByte);
-
+            out.flush();
+            out.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         return image;
     }
