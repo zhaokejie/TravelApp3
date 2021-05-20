@@ -140,26 +140,27 @@ public class PhotoTools {
         return image;
     }
 
-    /**
-     * 加密
-     *
-     * @param image
-     * @param type
-     * @return
-     */
-    public static String encodeToString( String imgPath, String type) throws IOException {
-        BufferedImage image = ImageIO.read(new FileInputStream(imgPath));
+
+    public static String  encodeToString( String imgPath, String type){
+
         String imageString = null;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
         try {
+            BufferedImage image = ImageIO.read(new FileInputStream(imgPath));
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ImageIO.write(image, type, bos);
             byte[] imageBytes = bos.toByteArray();
             imageString = Base64.getEncoder().encodeToString(imageBytes);
 
             bos.close();
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
+            System.out.println("文件尚未找到");
+            return imageString;
+        } catch (IOException e){
+            System.out.println("文件传输错误");
+            return imageString;
         }
         return imageString;
     }
