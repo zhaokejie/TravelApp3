@@ -54,10 +54,7 @@ public class SocketClient {
 //    public static void closeSocket()
 //    {
 //        try {
-//            socket.shutdownOutput();//关闭输出流
-//            socket.close();
-//            is.close();
-//            in.close();
+
 //
 //        } catch (IOException e) {
 //            e.printStackTrace();
@@ -94,6 +91,10 @@ public class SocketClient {
             while((info=in.readLine())!=null){
                 System.out.println("Python服务器回复："+info);
             }
+            socket.shutdownOutput();//关闭输出流
+            socket.close();
+            is.close();
+            in.close();
 
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
