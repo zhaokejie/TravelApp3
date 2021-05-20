@@ -13,6 +13,8 @@ import java.net.UnknownHostException;
 public class SocketClient {
 
     static Socket socket;
+    static InputStream is;
+    static BufferedReader in;
 
     static
     {
@@ -56,6 +58,8 @@ public class SocketClient {
         try {
             socket.shutdownOutput();//关闭输出流
             socket.close();
+            is.close();
+            in.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,14 +79,13 @@ public class SocketClient {
             pw.write(mess);
             pw.flush();
 
-            InputStream is=socket.getInputStream();
-            BufferedReader in = new BufferedReader(new InputStreamReader(is));
+            is=socket.getInputStream();
+            in = new BufferedReader(new InputStreamReader(is));
             String info=null;
             while((info=in.readLine())!=null){
                 System.out.println("Python服务器回复："+info);
             }
-            is.close();
-            in.close();
+
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
