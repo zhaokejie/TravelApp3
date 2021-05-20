@@ -51,7 +51,18 @@ public class SocketClient {
             e.printStackTrace();
         }
     }
+    public static void closeSocket()
+    {
+        try {
+            socket.shutdownOutput();//关闭输出流
+            socket.close();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
     public static void sendMessage(String mess)
     {
         try {
@@ -63,7 +74,6 @@ public class SocketClient {
             PrintWriter pw=new PrintWriter(os);//将输出流包装为打印流
             pw.write(mess);
             pw.flush();
-            socket.shutdownOutput();//关闭输出流
 
             InputStream is=socket.getInputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(is));
@@ -73,7 +83,6 @@ public class SocketClient {
             }
             is.close();
             in.close();
-            socket.close();
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

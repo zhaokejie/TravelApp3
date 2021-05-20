@@ -13,7 +13,12 @@ public class getImgTransfered extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String picUrl = request.getParameter("picUrl");
-        String img = PhotoTools.encodeToString(picUrl,"jpg");
+        String img = null;
+        if(picUrl != null)
+        {
+            img = PhotoTools.encodeToString(picUrl,"jpg");
+        }
+
         response.setHeader("Access-Control-Expose-Headers","ifExist");
         JSONObject jsonRes = new JSONObject();
         if (img != null)
