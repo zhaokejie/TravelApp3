@@ -13,8 +13,9 @@ import java.net.UnknownHostException;
 public class SocketClient {
 
     static Socket socket;
-    static InputStream is;
-    static BufferedReader in;
+    static InputStream is = null;
+    static BufferedReader in = null;
+    static OutputStream os = null;
 
     static
     {
@@ -74,13 +75,16 @@ public class SocketClient {
             System.out.println("------------SocketClient----------");
             System.out.println(mess);
             //获取输出流，向服务器端发送信息
-            OutputStream os=socket.getOutputStream();//字节输出流
+            if(os == null)
+               os =socket.getOutputStream();//字节输出流
             PrintWriter pw=new PrintWriter(os);//将输出流包装为打印流
             pw.write(mess);
             pw.flush();
 
-            is=socket.getInputStream();
-            in = new BufferedReader(new InputStreamReader(is));
+            if(is == null)
+                is=socket.getInputStream();
+            if(in == null)
+                in = new BufferedReader(new InputStreamReader(is));
             String info=null;
             while((info=in.readLine())!=null){
                 System.out.println("Python服务器回复："+info);
