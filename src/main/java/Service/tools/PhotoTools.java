@@ -166,5 +166,14 @@ public class PhotoTools {
     }
 
 
+    public static void removePic(String path)
+    {
+        File file = new File(path);
+        if(file.exists()) {
+            file.delete();
+            System.out.println("删除成功");
+        }
+    }
+
 
 }

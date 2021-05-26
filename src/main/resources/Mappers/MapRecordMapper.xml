@@ -73,6 +73,6 @@
     <!--    </update>-->
 
     <delete id="deleteMapRecord" >
-        delete from mapRecord where id=#{id} and saveTime=#{saveTime};
+        delete from mapRecord where id=#{id};
     </delete>
 </mapper>

@@ -37,5 +37,5 @@ public interface MapRecordDao {
     public void updateMapRecord(MapRecord mapR);
 
 
-    public void deleteMapRecord(Map prams);
+    public void deleteMapRecord(String ID);
 }

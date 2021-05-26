@@ -111,6 +111,21 @@ public class MapRecord {
 
     }
 
+    public static void removeMap(String ID) throws IOException {
+        //获取连接
+        AccountDao accountDao;
+        MyBatisConnect myBatisConnect = new MyBatisConnect();
+        SqlSession sqlSession = myBatisConnect.getSqlSession();
+        MapRecordDao mapRecordDao = new MapRecordDaoImpl(sqlSession);
+        mapRecordDao.deleteMapRecord(ID);
+
+
+        sqlSession.commit();
+        //关闭连接
+        myBatisConnect.closeSqlSession();
+
+    }
+
 }
 
 
