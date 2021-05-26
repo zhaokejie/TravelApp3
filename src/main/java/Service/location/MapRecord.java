@@ -21,6 +21,18 @@ public class MapRecord {
     String userName;
     String path;
 
+    String shouzhangName;
+
+
+
+    public String getShouzhangName() {
+        return shouzhangName;
+    }
+
+    public void setShouzhangName(String shouzhangName) {
+        this.shouzhangName = shouzhangName;
+    }
+
     public int getId() {
         return id;
     }
@@ -93,12 +105,14 @@ public class MapRecord {
          json.put("saveTime",this.saveTime);
          json.put("userName",this.userName);
          json.put("path",this.path);
+         json.put("shouzhangName",this.shouzhangName);
 
          return json;
 
     }
 
 }
+
 
 
 
@@ -111,3 +125,4 @@ public class MapRecord {
 //        userName varchar(100) not null,
 //        path varchar(150)
 //        );
+//ALTER TABLE mapRecord ADD COLUMN shouzhangName VARCHAR(100) NOT NULL AFTER path;

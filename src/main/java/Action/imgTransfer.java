@@ -24,6 +24,7 @@ public class imgTransfer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uname = request.getParameter("uname");
         String styleIndex = request.getParameter("styleIndex");
+        String shouzhangName = request.getParameter("shouzhangName");
 
 //        String photoData = request.getParameter("photoData");
         Reader reader = request.getReader();
@@ -61,6 +62,7 @@ public class imgTransfer extends HttpServlet {
         map.setSaveTime(saveTime);
         map.setPath(resPicUrl);
         map.setUserName(uname);
+        map.setShouzhangName(shouzhangName);
         MapRecord.saveMapRecord(map);
 
 

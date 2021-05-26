@@ -17,7 +17,8 @@
             id as id,
             saveTime as saveTime,
             userName as userNmae,
-            path as path
+            path as path,
+            shouzhangName as shouzhangName
         from
             mapRecord
         where userName = #{userName};
@@ -28,7 +29,8 @@
             id as id,
             saveTime as saveTime,
             userName as userNmae,
-            path as path
+            path as path,
+            shouzhangName as shouzhangName
         from
             mapRecord
         where id = #{id};
@@ -45,14 +47,17 @@
             id,
             saveTime,
             userName,
-            path
+            path,
+            shouzhangName
         )
         VALUES
         (
             #{id},
             #{saveTime},
             #{userName},
-            #{path}
+            #{path},
+            #{shouzhangName}
+
         );
     </insert>
 
