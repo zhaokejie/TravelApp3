@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,6 +29,8 @@ public class imgTransfer extends HttpServlet {
         String styleIndex = request.getParameter("styleIndex");
 
         String shouzhangName = request.getParameter("shouzhangName");
+
+        shouzhangName = URLDecoder.decode(shouzhangName,"UTF-8");
 //        shouzhangName = new String(shouzhangName.getBytes("iso-8859-1"),"utf-8");
 
 //        String photoData = request.getParameter("photoData");
