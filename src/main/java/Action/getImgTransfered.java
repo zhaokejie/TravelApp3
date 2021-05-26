@@ -12,6 +12,8 @@ import java.io.IOException;
 public class getImgTransfered extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String picUrl = request.getParameter("picUrl");
         String img = null;
         if(picUrl != null)

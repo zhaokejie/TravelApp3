@@ -13,6 +13,8 @@ import java.util.List;
 public class getPicUrlList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String uname = request.getParameter("uname");
 
         List<MapRecord> mapList = MapRecord.getMapRecordByUserName(uname);
@@ -20,6 +22,7 @@ public class getPicUrlList extends HttpServlet {
 
         for(MapRecord m:mapList)
         {
+
             jsonMapArrays.put(m.getJsonMapRecord());
         }
 

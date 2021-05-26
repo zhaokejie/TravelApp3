@@ -22,6 +22,8 @@ import java.util.Date;
 
 public class imgTransfer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String uname = request.getParameter("uname");
         String styleIndex = request.getParameter("styleIndex");
         String shouzhangName = request.getParameter("shouzhangName");

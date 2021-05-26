@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -101,8 +102,11 @@ public class MapRecord {
     public JSONObject getJsonMapRecord()
     {
          JSONObject json = new JSONObject();
+
+         SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
+         String dateTime=df.format(this.getSaveTime());
          json.put("id",this.id);
-         json.put("saveTime",this.saveTime);
+         json.put("saveTime",dateTime);
          json.put("userName",this.userName);
          json.put("path",this.path);
          json.put("shouzhangName",this.shouzhangName);
