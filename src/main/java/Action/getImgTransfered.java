@@ -25,12 +25,12 @@ public class getImgTransfered extends HttpServlet {
         {
             response.setHeader("ifExist","1");
             jsonRes.put("ifExist","1");
-            jsonRes.put("picData",img);
+//            jsonRes.put("picData",img);
         }
         else{
             response.setHeader("ifExist","0");
             jsonRes.put("ifExist","0");
-            jsonRes.put("picData","-1");
+//            jsonRes.put("picData","-1");
 
 
         }

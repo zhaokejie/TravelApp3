@@ -22,7 +22,7 @@ public class MapRecordDaoImpl implements MapRecordDao {
 
     @Override
     public List<MapRecord> getMapRecordByUserName(String userName) {
-        return this.sqlSession.selectList("MapRecordDao.getMapRecordById",userName);
+        return this.sqlSession.selectList("MapRecordDao.getMapRecordByUserName",userName);
     }
 
     @Override

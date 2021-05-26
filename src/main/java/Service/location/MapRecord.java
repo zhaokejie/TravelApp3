@@ -69,7 +69,7 @@ public class MapRecord {
         myBatisConnect.closeSqlSession();
     }
 
-    public List<MapRecord> getMapRecordByUserName(String userName) throws IOException {
+    public static List<MapRecord> getMapRecordByUserName(String userName) throws IOException {
 
         //获取连接
         AccountDao accountDao;

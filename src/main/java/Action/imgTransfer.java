@@ -49,6 +49,21 @@ public class imgTransfer extends HttpServlet {
         String resPicUrl = "C:\\yhj\\data\\mapTransfer\\stylizedMap\\"+picFileName+".jpg";
         PhotoTools.decodeToImage(photoData,picUrl);
 
+
+
+        //将目录保存到数据库
+//        int id;
+//
+//        Date saveTime;
+//        String userName;
+//        String path;
+        MapRecord map = new MapRecord();
+        map.setSaveTime(saveTime);
+        map.setPath(resPicUrl);
+        map.setUserName(uname);
+        MapRecord.saveMapRecord(map);
+
+
         //新的python调用方法
         JSONObject jsonPy = new JSONObject();
         jsonPy.put("picFileName" , picFileName);
@@ -65,6 +80,10 @@ public class imgTransfer extends HttpServlet {
 //        mapRecord.setSaveTime(saveTime);
 //        mapRecord.setPath(picUrl);
 //        MapRecord.saveMapRecord(mapRecord);
+
+
+
+
 
 
         JSONObject jsonPicUrl = new JSONObject();
