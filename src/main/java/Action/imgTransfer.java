@@ -28,7 +28,7 @@ public class imgTransfer extends HttpServlet {
         String styleIndex = request.getParameter("styleIndex");
 
         String shouzhangName = request.getParameter("shouzhangName");
-        shouzhangName = new String(shouzhangName.getBytes("iso-8859-1"),"utf-8");
+//        shouzhangName = new String(shouzhangName.getBytes("iso-8859-1"),"utf-8");
 
 //        String photoData = request.getParameter("photoData");
         Reader reader = request.getReader();
