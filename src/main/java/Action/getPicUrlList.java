@@ -26,7 +26,7 @@ public class getPicUrlList extends HttpServlet {
             jsonMapArrays.put(m.getJsonMapRecord());
         }
 
-        response.getWriter().write(jsonMapArrays.toString());
+        response.getOutputStream().write(jsonMapArrays.toString().getBytes("UTF-8"));
 
     }
 
