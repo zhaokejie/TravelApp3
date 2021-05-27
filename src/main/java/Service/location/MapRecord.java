@@ -145,3 +145,7 @@ public class MapRecord {
 //        path varchar(150)
 //        );
 //ALTER TABLE mapRecord ADD COLUMN shouzhangName VARCHAR(100) NOT NULL AFTER path;
+
+//    alter table mapRecord character set utf8;
+
+//    alter table mapRecord change shouzhangName shouzhangName varchar(100) character set utf-8;

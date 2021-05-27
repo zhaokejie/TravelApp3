@@ -42,7 +42,7 @@ public class MapRecordDaoImpl implements MapRecordDao {
 
     @Override
     public void deleteMapRecord(String ID) {
-        this.sqlSession.delete(ID);
+        this.sqlSession.delete("MapRecordDa.deleteMapRecord",ID);
 
     }
 }

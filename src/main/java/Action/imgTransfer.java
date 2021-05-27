@@ -42,6 +42,7 @@ public class imgTransfer extends HttpServlet {
             c = request.getReader().read();
             buf.append((char)c);
 
+
         }while(c != -1) ;
         String photoData = new String(buf);
 
