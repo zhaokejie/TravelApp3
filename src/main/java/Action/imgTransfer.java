@@ -55,7 +55,7 @@ public class imgTransfer extends HttpServlet {
         String dateNow = df.format(saveTime);
         String picFileName = uname+dateNow;
         String picUrl = "C:\\yhj\\data\\mapTransfer\\rawMap\\"+picFileName+".jpg";
-        String resPicUrl = "C:\\yhj\\data\\mapTransfer\\stylizedMap\\"+picFileName+".jpg";
+        String resPicUrl = "https://shouzhang.icu:4430/shouzhangData/stylizedMap/"+picFileName+".jpg";
         PhotoTools.decodeToImage(photoData,picUrl);
 
 

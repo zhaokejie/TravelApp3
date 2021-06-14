@@ -62,7 +62,7 @@ public class SocketClient {
         try {
 
             Socket socket;
-            socket = new Socket("127.0.0.1", 50006);
+            socket = new Socket("127.0.0.1", 50007);
             InputStream is;
             BufferedReader in;
             OutputStream os;
