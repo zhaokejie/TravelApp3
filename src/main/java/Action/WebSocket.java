@@ -18,7 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-@ServerEndpoint("/websocket/{userID}")
+@ServerEndpoint("/websocketLinux/{userID}")
 public class WebSocket {
 
     private static int onlineCount = 0;
@@ -62,7 +62,7 @@ public class WebSocket {
 
                 }
                 mess.put("unReadList",Message.messageToJSON(m));
-                sendMessageTo(mess.toString(),userID);
+                sendMessageToTong(mess.toString(),userID);
             }
 
             for(Message m:oldMessage)
@@ -77,7 +77,7 @@ public class WebSocket {
 
                 }
                 mess.put("ReadList",Message.messageToJSON(m));
-                sendMessageTo(mess.toString(),userID);
+                sendMessageToTong(mess.toString(),userID);
             }
 
 //            mess.put("ReadList",oldMessage);
@@ -116,7 +116,7 @@ public class WebSocket {
             sendMess.put("unReadList",mess);
             sendMess.put("ReadList","");
             sendMess.put("type", "instant");
-            sendMessageTo(sendMess.toString(),receiverID);
+            sendMessageToTong(sendMess.toString(),receiverID);
 
 
             //将发送过的消息存入已读列表

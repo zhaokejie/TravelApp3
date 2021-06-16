@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @WebServlet(name = "getRecommend", value = "/getRecommend")
@@ -22,19 +23,25 @@ public class getRecommend extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
 
+        HttpSession httpsession = request.getSession(false);
+        User user = (User) httpsession.getAttribute("aUser");
+
         String cityNow = request.getParameter("cityNow");
         String uname =   request.getParameter("uname");
 
-        List<MarkPoi> markPoiList = MarkPoi.getMarkPoiByUID(User.getIDByName(uname));
+        System.out.println("-----------------getRecommend-------------------");
+        System.out.println(cityNow+" "+uname);
+
+//        List<MarkPoi> markPoiList = MarkPoi.getMarkPoiByUID(User.getIDByName(uname));
 
         JSONObject poiJson  = new JSONObject();
-        poiJson.put("uname",uname);
+        poiJson.put("uname", user.getUserName());
         poiJson.put("cityNow",cityNow);
-        poiJson.put("history",markPoiList);
+//        poiJson.put("history",markPoiList);
 
         String Info = SocketClient.sendMessageRe(poiJson.toString());
 
-        response.getWriter().write(Info);
+        response.getOutputStream().write(Info.getBytes("UTF-8"));
 
 
     }

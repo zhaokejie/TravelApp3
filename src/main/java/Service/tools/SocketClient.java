@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 
 
 public class SocketClient {
@@ -58,7 +59,7 @@ public class SocketClient {
     }
 
     public static String sendMessageRe(String mess) {
-        String info = null;
+        String info = "";
         try {
 
             Socket socket;
@@ -73,19 +74,22 @@ public class SocketClient {
             //获取输出流，向服务器端发送信息
 
             os = socket.getOutputStream();//字节输出流
-
-            pw = new PrintWriter(os);//将输出流包装为打印流
-            pw.write(mess);
-            pw.flush();
+            os.write(mess.getBytes(StandardCharsets.UTF_8));
+            os.flush();
+//            pw = new PrintWriter(os);//将输出流包装为打印流
+//            pw.write(mess);
+//            pw.flush();
 
 
             is = socket.getInputStream();
 
-            in = new BufferedReader(new InputStreamReader(is));
-
-            while ((info += in.readLine()) != null) {
-                System.out.println("Python服务器回复：" + info);
+            in = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+            String line = null;
+            while ((line = in.readLine()) != null) {
+                info += line;
             }
+
+            System.out.println("Python服务器回复：" + info);
             socket.shutdownOutput();//关闭输出流
             socket.close();
             is.close();
